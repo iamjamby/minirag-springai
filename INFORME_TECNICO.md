@@ -117,8 +117,8 @@ Se configuró el archivo `pom.xml` con Java 21 y Spring Boot 3.5.16. Se importó
 - `spring-ai-advisors-vector-store` (para `QuestionAnswerAdvisor`)
 - `spring-boot-starter-test`
 
-> **[CAPTURA DE PANTALLA 1]**  
-> *Insertar aquí captura del archivo `pom.xml` mostrando las dependencias de Spring AI, Groq, Transformers y H2.*
+![Captura 1: Configuración de dependencias Maven pom.xml](evidencias/captura1_pom.png)
+*Figura 1: Dependencias de Spring Boot 3.5, Spring AI 1.1 BOM, Groq OpenAI, Transformers ONNX y base de datos H2.*
 
 ---
 
@@ -129,8 +129,8 @@ Se configuraron las credenciales y parámetros de conexión en `src/main/resourc
 - Definición de URIs remotas de HuggingFace para el tokenizer y modelo ONNX `e5-small-v2`.
 - Persistencia de H2 en archivo `./data/miniragdb` y habilitación de la consola web en `/h2-console`.
 
-> **[CAPTURA DE PANTALLA 2]**  
-> *Insertar aquí captura del archivo `application.properties` con la configuración de Groq, Transformers y la base de datos H2.*
+![Captura 2: Configuración del entorno en application.properties](evidencias/captura2_properties.png)
+*Figura 2: Propiedades de conexión a Groq, modelos ONNX descargados de HuggingFace y configuración de BD H2.*
 
 ---
 
@@ -141,8 +141,8 @@ Se crearon en la carpeta `src/main/resources/documentos/` los 3 archivos base re
 3. `springai.txt`: Arquitectura de Spring AI, portabilidad de modelos y RAG.
 4. `rest.txt`: Conceptos fundamentales de REST, verbos HTTP (GET, POST, PUT, DELETE) y diseño sin estado (*stateless*).
 
-> **[CAPTURA DE PANTALLA 3]**  
-> *Insertar aquí captura del explorador de archivos mostrando la carpeta `src/main/resources/documentos/` con los cuatro archivos `.txt` creados.*
+![Captura 3: Explorador de documentos de conocimiento .txt](evidencias/captura3_documentos.png)
+*Figura 3: Estructura de documentos de conocimiento incluyendo el archivo rest.txt para la Actividad 1.*
 
 ---
 
@@ -152,27 +152,8 @@ Se implementó `DocumentService` con un método `@PostConstruct` que ejecuta el 
 2. Segmenta los documentos en fragmentos de 300 tokens con un solapamiento (*overlap*) de 50 tokens usando `TokenTextSplitter`.
 3. Carga los fragmentos en el `VectorStore`, donde el modelo local `e5-small-v2` genera los vectores numéricos correspondientes.
 
-```java
-@PostConstruct
-public void cargarDocumentos() {
-    try {
-        Resource[] recursos = new PathMatchingResourcePatternResolver()
-                .getResources("classpath:documentos/*.txt");
-        TokenTextSplitter splitter = new TokenTextSplitter(300, 50, 5, 10000, true);
-        for (Resource recurso : recursos) {
-            TextReader reader = new TextReader(recurso);
-            List<Document> documentos = reader.read();
-            List<Document> chunks = splitter.apply(documentos);
-            vectorStore.add(chunks);
-        }
-    } catch (Exception e) {
-        throw new RuntimeException("Error al cargar documentos RAG: " + e.getMessage(), e);
-    }
-}
-```
-
-> **[CAPTURA DE PANTALLA 4]**  
-> *Insertar aquí captura del código de `DocumentService.java` mostrando la lectura de archivos, el `TokenTextSplitter` y la indexación en el `VectorStore`.*
+![Captura 4: Servicio DocumentService.java y segmentación de chunks](evidencias/captura4_documentservice.png)
+*Figura 4: Ingestión, fragmentación mediante TokenTextSplitter (300 tokens) e indexación en el SimpleVectorStore.*
 
 ---
 
@@ -182,8 +163,8 @@ Se creó la entidad `Consulta` para registrar cada interacción en H2:
 - Campos `pregunta`, `respuesta` y `fechaHora`.
 - Se creó `ConsultaRepository` extendiendo `JpaRepository<Consulta, Long>`.
 
-> **[CAPTURA DE PANTALLA 5]**  
-> *Insertar aquí captura del código de la entidad `Consulta.java` y de la interfaz `ConsultaRepository.java`.*
+![Captura 5: Entidad JPA Consulta.java y repositorio ConsultaRepository.java](evidencias/captura5_persistencia.png)
+*Figura 5: Implementación del modelo de datos relacional y repositorio Spring Data JPA para auditoría.*
 
 ---
 
@@ -193,8 +174,8 @@ Se configuró el `ChatClient` integrando `QuestionAnswerAdvisor`:
 - Se configuró el `QuestionAnswerAdvisor` con un `SearchRequest` solicitando los 4 fragmentos más cercanos (`topK(4)`) con similitud mínima de `0.50`.
 - Cada consulta resuelta se almacena de inmediato en la base de datos H2 mediante `consultaRepository.save()`.
 
-> **[CAPTURA DE PANTALLA 6]**  
-> *Insertar aquí captura del método `responderConRAG(String pregunta)` en `ChatService.java` donde se aprecia la llamada a `chatClient.prompt().advisors(...)`.*
+![Captura 6: Orquestación RAG en ChatService.java con QuestionAnswerAdvisor](evidencias/captura6_chatservice.png)
+*Figura 6: Inyección de QuestionAnswerAdvisor, umbral de similitud 0.50 y guardado en base de datos H2.*
 
 ---
 
@@ -204,8 +185,8 @@ Se expusieron los tres endpoints solicitados:
 2. `GET /api/consultas`: Lista todas las consultas guardadas en base de datos.
 3. `GET /api/salud`: Retorna el estado del servicio y el modelo activo.
 
-> **[CAPTURA DE PANTALLA 7]**  
-> *Insertar aquí captura de `ChatController.java` mostrando la definición de los tres endpoints REST.*
+![Captura 7: Endpoints REST en ChatController.java](evidencias/captura7_chatcontroller.png)
+*Figura 7: Exposición de endpoints REST para chat, historial de consultas y monitoreo de salud.*
 
 ---
 
@@ -214,8 +195,8 @@ Se ubicaron los recursos estáticos en `src/main/resources/static/`:
 - Interfaz intuitiva y moderna con área de texto, botón de consulta y botones de prueba rápida (*quick prompts*).
 - Manejo de estados asíncronos en JavaScript (deshabilitación de botón durante la consulta y mensajes de carga).
 
-> **[CAPTURA DE PANTALLA 8]**  
-> *Insertar aquí captura de la aplicación web abierta en el navegador (`http://localhost:8080`) antes de realizar consultas.*
+![Captura 8: Interfaz Web Inicial en http://localhost:8080](evidencias/captura8_frontend_inicial.png)
+*Figura 8: Interfaz web de usuario desarrollada con HTML5, CSS3 y JavaScript.*
 
 ---
 
@@ -229,30 +210,20 @@ Se verificaron exitosamente 6 pruebas:
 - `testJpaAuditingAndPersistence()`
 - `testDocumentChunkingLogic()`
 
-Resultado obtenido:
-```text
-[INFO] -------------------------------------------------------
-[INFO]  T E S T S
-[INFO] -------------------------------------------------------
-[INFO] Running com.tecnologico.minirag.MiniragApplicationTests
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
-[INFO] BUILD SUCCESS
-```
-
-> **[CAPTURA DE PANTALLA 9]**  
-> *Insertar aquí captura de la terminal mostrando el reporte de Maven con `Tests run: 6, Failures: 0, Errors: 0, Skipped: 0` y `BUILD SUCCESS`.*
+![Captura 9: Ejecución de Pruebas Automatizadas con Maven Surefire](evidencias/captura9_test_mvn.png)
+*Figura 9: Suite de pruebas unitarias y de integración pasando al 100% (BUILD SUCCESS).*
 
 ---
 
 ### Paso 10: Pruebas Funcionales en Vivo y Consulta de Historial en H2
-1. **Consulta RAG en Frontend**: Se formuló la pregunta *"¿Qué es Spring Boot?"* y *"¿Qué es un servicio REST?"*. El sistema respondió con precisión utilizando exclusivamente la información indexada en los documentos `.txt`.
+1. **Consulta RAG en Frontend**: Se formuló la pregunta *"¿Qué es una arquitectura REST y cuáles son los métodos HTTP principales?"*. El sistema respondió con precisión utilizando exclusivamente la información indexada en los documentos `.txt`.
 2. **Verificación en Consola H2**: Se ingresó a `http://localhost:8080/h2-console` con la URL `jdbc:h2:file:./data/miniragdb`, ejecutando la consulta `SELECT * FROM CONSULTAS;` donde se evidenció el registro de cada pregunta, su respuesta y la estampa de tiempo correspondiente.
 
-> **[CAPTURA DE PANTALLA 10]**  
-> *Insertar aquí captura del frontend con una respuesta generada por RAG.*
+![Captura 10: Consulta RAG Exitosa y Respuesta Generada en el Frontend](evidencias/captura10_frontend_respuesta.png)
+*Figura 10: Respuesta generada por el modelo Groq contextualizado mediante RAG desde el documento rest.txt.*
 
-> **[CAPTURA DE PANTALLA 11]**  
-> *Insertar aquí captura de la consola H2 (`/h2-console`) ejecutando `SELECT * FROM CONSULTAS;` y mostrando los registros guardados en la tabla.*
+![Captura 11: Historial de Consultas Persistido en Consola H2](evidencias/captura11_h2_console.png)
+*Figura 11: Registros de auditoría almacenados en la tabla CONSULTAS de la base de datos H2.*
 
 ---
 
