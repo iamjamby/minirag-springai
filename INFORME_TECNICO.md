@@ -12,7 +12,7 @@
 | **Asignatura** | Desarrollo Web Avanzado / Taller Práctico LLM & RAG |
 | **Integrantes del Grupo** | • Luis Daniel Troconis González<br>• Neyder Márquez Obregón<br>• José Daniel Valdés |
 | **Código Estudiantil** | 0000058822 |
-| **Enlace al Repositorio** | `https://github.com/ldtro/minirag-springai` (o enlace suministrado en git push) |
+| **Enlace al Repositorio** | https://github.com/iamjamby/minirag-springai |
 | **Niveles Completados** | **Nivel 1** (Integración Chat Groq) y **Nivel 2** (Arquitectura RAG completa con Embeddings Locales ONNX, SimpleVectorStore, Ingestión de Documentos, Persistencia H2 JPA y Frontend Web) |
 | **Fecha de Presentación** | Octubre de 2026 |
 
