@@ -1,0 +1,21 @@
+ARQUITECTURA DE MICROSERVICIOS
+
+Una arquitectura de microservicios organiza una aplicación como un conjunto de servicios pequeños e independientes.
+
+Cada servicio debe representar una capacidad específica del negocio.
+
+Una de las principales ventajas de los microservicios es que diferentes servicios pueden desplegarse y escalarse de manera independiente.
+
+En una arquitectura monolítica, las diferentes funcionalidades forman parte de una sola aplicación desplegable.
+
+Los microservicios pueden comunicarse mediante protocolos como HTTP y tecnologías de mensajería.
+
+REST es una alternativa ampliamente utilizada para comunicación síncrona entre servicios.
+
+La comunicación excesivamente síncrona entre microservicios puede aumentar el acoplamiento y generar latencia.
+
+Domain-Driven Design puede ayudar a identificar adecuadamente los límites funcionales de los microservicios.
+
+Un API Gateway puede proporcionar un punto de entrada común para múltiples microservicios.
+
+Entre los principales desafíos de los microservicios se encuentran la complejidad distribuida, la observabilidad, la consistencia de datos, la seguridad y la tolerancia a fallos.

@@ -1,0 +1,15 @@
+SERVICIOS WEB REST Y PROTOCOLO HTTP
+
+REST (Representational State Transfer) es un estilo de arquitectura de software para sistemas distribuidos y servicios web.
+
+Los servicios web RESTful utilizan el protocolo HTTP para la transferencia de información y comunicación entre clientes y servidores.
+
+El protocolo HTTP define métodos estandarizados para realizar operaciones sobre recursos:
+- GET: Permite consultar o recuperar la representación de un recurso sin modificar el estado en el servidor.
+- POST: Permite crear un nuevo recurso en el servidor o enviar información para ser procesada.
+- PUT: Permite actualizar completamente un recurso existente o crearlo si no existe.
+- DELETE: Permite eliminar un recurso existente en el servidor.
+
+JSON (JavaScript Object Notation) es el formato de intercambio de datos más utilizado en servicios REST debido a su ligereza y facilidad de lectura tanto para humanos como para máquinas.
+
+Una API REST bien diseñada utiliza códigos de estado HTTP para indicar el resultado de una solicitud, como 200 OK, 201 Created, 400 Bad Request y 404 Not Found.

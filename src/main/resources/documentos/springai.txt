@@ -1,0 +1,27 @@
+SPRING AI Y RAG
+
+Spring AI es un proyecto del ecosistema Spring diseñado para facilitar la incorporación de tecnologías de inteligencia artificial generativa en aplicaciones Java.
+
+Spring AI proporciona abstracciones para trabajar con modelos de chat, modelos de embeddings, bases vectoriales, herramientas y técnicas RAG.
+
+Un embedding es una representación numérica de un texto.
+
+Los embeddings permiten comparar semánticamente diferentes fragmentos de texto.
+
+Un Vector Store almacena embeddings y permite recuperar documentos mediante búsquedas de similitud.
+
+RAG significa Retrieval-Augmented Generation.
+
+RAG combina recuperación de información y generación mediante modelos de lenguaje.
+
+En un sistema RAG primero se buscan documentos relacionados con la pregunta del usuario.
+
+Los fragmentos recuperados se incorporan posteriormente como contexto al prompt enviado al modelo de lenguaje.
+
+La fragmentación de documentos se conoce habitualmente como chunking.
+
+Los chunks deben ser suficientemente pequeños para facilitar la recuperación de información y suficientemente grandes para mantener el contexto semántico.
+
+Spring AI proporciona la clase TokenTextSplitter para dividir documentos en fragmentos.
+
+Spring AI también proporciona QuestionAnswerAdvisor para implementar un flujo básico de RAG utilizando un VectorStore.

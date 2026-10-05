@@ -1,0 +1,23 @@
+### Verificar salud
+GET http://localhost:8080/api/salud
+Accept: application/json
+
+### Realizar pregunta sobre RAG
+POST http://localhost:8080/api/chat
+Content-Type: application/json
+
+{
+  "pregunta": "¿Qué es RAG?"
+}
+
+### Preguntar sobre microservicios
+POST http://localhost:8080/api/chat
+Content-Type: application/json
+
+{
+  "pregunta": "¿Qué problemas puede tener una arquitectura de microservicios?"
+}
+
+### Consultar historial
+GET http://localhost:8080/api/consultas
+Accept: application/json

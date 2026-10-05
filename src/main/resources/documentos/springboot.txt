@@ -1,0 +1,23 @@
+SPRING BOOT
+
+Spring Boot es un proyecto perteneciente al ecosistema Spring que facilita la creación de aplicaciones Java independientes y listas para producción.
+
+Spring Boot utiliza el principio de convención sobre configuración y reduce la cantidad de configuración manual necesaria en aplicaciones Spring.
+
+Una aplicación Spring Boot puede incluir un servidor web embebido, como Tomcat, lo que permite ejecutar la aplicación directamente mediante un archivo JAR sin instalar un servidor de aplicaciones externo.
+
+Las principales capas utilizadas normalmente en una aplicación Spring Boot son Controller, Service y Repository.
+
+La capa Controller recibe las solicitudes HTTP del cliente.
+
+La capa Service contiene principalmente la lógica de negocio de la aplicación.
+
+La capa Repository proporciona acceso a la información almacenada en una base de datos.
+
+Spring utiliza Inversión de Control e Inyección de Dependencias para administrar los objetos que forman parte de una aplicación.
+
+Una API REST implementada con Spring Boot puede utilizar anotaciones como @RestController, @RequestMapping, @GetMapping, @PostMapping, @PutMapping y @DeleteMapping.
+
+Spring Data JPA facilita el acceso a bases de datos relacionales mediante repositorios.
+
+Las clases anotadas con @Entity representan entidades que pueden ser persistidas en una base de datos.

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniRAG Académico</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="contenedor">
+        <header>
+            <h1>MiniRAG Académico</h1>
+            <p>Asistente inteligente con Spring Boot, Spring AI y RAG</p>
+        </header>
+
+        <main>
+            <section class="chat">
+                <label for="pregunta">Realiza una pregunta:</label>
+                <textarea id="pregunta" placeholder="Ejemplo: ¿Qué es RAG?" rows="4"></textarea>
+                <button id="btnPreguntar" onclick="preguntar()">Preguntar</button>
+            </section>
+
+            <section class="resultado">
+                <h2>Respuesta</h2>
+                <div id="respuesta">La respuesta aparecerá aquí.</div>
+            </section>
+
+            <section class="ejemplos">
+                <h2>Preguntas de prueba</h2>
+                <button onclick="usarPregunta('¿Qué es Spring Boot?')">¿Qué es Spring Boot?</button>
+                <button onclick="usarPregunta('¿Qué ventajas tienen los microservicios?')">Ventajas de microservicios</button>
+                <button onclick="usarPregunta('¿Qué es un embedding?')">¿Qué es un embedding?</button>
+                <button onclick="usarPregunta('¿Cómo funciona RAG?')">¿Cómo funciona RAG?</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
